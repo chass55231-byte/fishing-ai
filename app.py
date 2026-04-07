@@ -1,16 +1,17 @@
-from flask import Flask, jsonify, request
+from flask import Flask
 import os
 
 app = Flask(__name__)
 
-@app.route('/api/fish', methods=['GET'])
-def get_fish():
-    return jsonify({'fish': ['trout', 'salmon', 'tuna']})
-
-@app.route('/api/fish', methods=['POST'])
-def add_fish():
-    data = request.get_json()
-    return jsonify({'message': f'Fish {data.get("name")} added!'}), 201
+@app.route('/')
+def home():
+    return 'Welcome to the Fishing AI Web Service!'
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 8080))
+    app.run(host="0.0.0.0", port=port)
+    
+
+from flask import Flask, jsonify, request
+import os
+
